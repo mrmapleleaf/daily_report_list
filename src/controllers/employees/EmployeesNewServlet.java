@@ -12,16 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import models.Employee;
 
 /**
- * Servlet implementation class EnployeesNewServlet
+ * Servlet implementation class EmployeesNewServlet
  */
-@WebServlet(name = "EmployeesNewServlet", urlPatterns = { "/employees/new" })
-public class EnployeesNewServlet extends HttpServlet {
+@WebServlet("/employees/new")
+public class EmployeesNewServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EnployeesNewServlet() {
+    public EmployeesNewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
