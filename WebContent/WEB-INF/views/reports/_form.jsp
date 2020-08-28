@@ -3,10 +3,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:if test="${errors != null}">
-    入力エラーがあります。<br/>
-    <c:forEach var="error" items="${errors}">
-        ・<c:out value="${errors}"/><br/>
-    </c:forEach>
+    <div id="flush_error">
+        入力エラーがあります。<br/>
+        <c:forEach var="error" items="${errors}">
+            ・<c:out value="${error}"/><br/>
+        </c:forEach>
+    </div>
 </c:if>
 
 <label for="report_date">日付</label><br/>
@@ -18,7 +20,7 @@
 <br/><br/>
 
 <label for="title">タイトル</label><br/>
-<input type="text" name="report_title" value="${report.title}" />
+<input type="text" name="title" value="${report.title}" />
 <br/><br/>
 
 <label for="content">内容</label><br/>
