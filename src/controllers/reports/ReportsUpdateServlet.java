@@ -51,11 +51,11 @@ public class ReportsUpdateServlet extends HttpServlet {
             if(errors.size() > 0) {
                em.close();
 
-               request.setAttribute("_token", _token);
+               request.setAttribute("_token", request.getSession().getId());
                request.setAttribute("report", r);
                request.setAttribute("errors", errors);
 
-               RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/edit");
+               RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/edit.jsp");
                rd.forward(request, response);
             } else {
                 em.getTransaction().begin();
