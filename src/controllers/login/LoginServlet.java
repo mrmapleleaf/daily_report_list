@@ -75,6 +75,7 @@ public class LoginServlet extends HttpServlet {
             if(e != null) {
                 check_result = true;
             }
+        }
 
             if(!check_result) {
                 request.setAttribute("_token", request.getSession().getId());
@@ -89,7 +90,6 @@ public class LoginServlet extends HttpServlet {
                 request.getSession().setAttribute("flush", "ログインしました。");
                 response.sendRedirect(request.getContextPath() + "/");
             }
-        }
 
     }
 

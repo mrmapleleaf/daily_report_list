@@ -44,7 +44,7 @@ public class EmployeesUpdateServlet extends HttpServlet {
             Employee e = em.find(Employee.class, (Integer)(request.getSession().getAttribute("employee_id")));
 
             Boolean code_duplicate_check = true;
-            if(e.getCode().equals(request.getAttribute("code"))) {
+            if(e.getCode().equals(request.getParameter("code"))) {
                 code_duplicate_check = false;
             } else {
                 e.setCode(request.getParameter("code"));
