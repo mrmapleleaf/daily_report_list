@@ -62,6 +62,9 @@ public class Report {
     @Column(name = "updated_at", nullable = false)
     private Timestamp updated_at;
 
+    @Column(name = "count_like", nullable = false)
+    private Integer count_like;
+
     public Integer getId() {
         return id;
     }
@@ -117,4 +120,13 @@ public class Report {
     public void setUpdated_at(Timestamp updated_at) {
         this.updated_at = updated_at;
     }
+
+    public Integer getCount_like(){
+        return this.count_like;
+    }
+
+    public void setCount_like(Integer count_like) {
+        this.count_like = count_like;
+    }
+
 }
