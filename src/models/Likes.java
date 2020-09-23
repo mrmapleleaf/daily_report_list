@@ -16,12 +16,16 @@ import javax.persistence.Table;
 @Table(name = "likes")
 @NamedQueries({
     @NamedQuery(
-            name = "getAllLikes",
+            name = "getAllLikes",//いいねした従業員を取得
             query = "SELECT l FROM Likes AS l WHERE l.report = :report ORDER BY l.id DESC"
             ),
     @NamedQuery(
-            name = "getAllLikesCount",
+            name = "getAllLikesCount",//いいねした従業員の総数を取得
             query = "SELECT COUNT(l) FROM Likes AS l WHERE l.report = :report"
+            ),
+    @NamedQuery(
+            name = "checkLikedAlready",//ログイン中の従業員が訪れているページをすでにいいねしているかを取得
+            query = "SELECT COUNT(l) FROM Likes AS l WHERE l.employee = :employee AND l.report = :report"
             )
 })
 @Entity

@@ -38,7 +38,14 @@
 
                         <tr>
                             <th>いいね数</th>
-                            <td><c:out value="${report.count_like}"/></td>
+                            <c:choose>
+                                <c:when test="${report.count_like > 0}">
+                                    <td><a href="<c:url value='/likes/index?id=${report.id}'/>"><c:out value="${report.count_like}"/></a></td>
+                                </c:when>
+                                <c:otherwise>
+                                    <td><c:out value="${report.count_like}"/></td>
+                                </c:otherwise>
+                            </c:choose>
                         </tr>
 
                     </tbody>
@@ -47,7 +54,7 @@
                 <c:if test="${sessionScope.login_employee.id == report.employee.id}">
                     <p><a href="<c:url value="/reports/edit?id=${report.id}" />">この日報を編集する</a></p>
                 </c:if>
-                <c:if test="${sessionScope.login_employee.id != report.employee.id}">
+                <c:if test="${sessionScope.login_employee.id != report.employee.id and Liked_Already_Count == 0}">
                     <p><a href="<c:url value="/reports/ReportsCountLikeServlet?id=${report.id}"/>">この投稿にいいねする</a></p>
                 </c:if>
           </c:when>

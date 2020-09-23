@@ -58,6 +58,7 @@ public class LikesIndexServlet extends HttpServlet {
 
         em.close();
 
+        request.setAttribute("l", liked_report);
         request.setAttribute("likes", likes);
         request.setAttribute("likes_count", likes_count);
         request.setAttribute("page", page);
