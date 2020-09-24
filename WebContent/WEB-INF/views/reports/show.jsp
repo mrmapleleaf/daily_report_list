@@ -57,6 +57,9 @@
                 <c:if test="${sessionScope.login_employee.id != report.employee.id and Liked_Already_Count == 0}">
                     <p><a href="<c:url value="/reports/ReportsCountLikeServlet?id=${report.id}"/>">この投稿にいいねする</a></p>
                 </c:if>
+                <c:if test="${sessionScope.login_employee.id != report.employee.id and Followed_Already_Count == 0}">
+                    <p><a href="<c:url value="/follows/create?e_id=${report.employee.id}"/>">この従業員をフォローする</a></p>
+                </c:if>
           </c:when>
           <c:otherwise>
             <h2>お探しのデータは見つかりませんでした。</h2>
