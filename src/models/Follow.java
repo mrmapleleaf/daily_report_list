@@ -18,6 +18,22 @@ import javax.persistence.Table;
     @NamedQuery(
             name = "checkFollowedAlready",
             query = "SELECT COUNT(f) FROM Follow AS f WHERE f.employee1 = :employee1 AND f.employee2 = :employee2"
+            ),
+    @NamedQuery(
+            name = "getAllFollow",
+            query = "SELECT f FROM Follow AS f WHERE f.employee1 = :employee1"//ログイン中の従業員のレコードを取得
+            ),
+    @NamedQuery(
+            name = "getAllFollowCount",
+            query = "SELECT COUNT(f) FROM Follow AS f WHERE f.employee1 = :employee1"//ログイン中の従業員のレコードの総数を取得
+            ),
+    @NamedQuery(
+            name = "getAllFollowed",
+            query = "SELECT f FROM Follow AS f WHERE f.employee2 = :employee2"//ログイン中の従業員をフォローしている従業員のレコードを取得
+            ),
+    @NamedQuery(
+            name = "getAllFollowedCount",
+            query = "SELECT COUNT(f) FROM Follow AS f WHERE f.employee2 = :employee2"//ログイン中の従業員をフォローしている従業員のレコードの総数を取得
             )
 })
 @Entity

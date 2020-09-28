@@ -1,4 +1,4 @@
-package controllers.timeline;
+package controllers.follows;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,20 +12,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.Employee;
-import models.Report;
+import models.Follow;
 import utils.DBUtil;
 
 /**
- * Servlet implementation class TimelineServlet
+ * Servlet implementation class FollowIndexServlet
  */
-@WebServlet("/timeline/index")
-public class TimelineServlet extends HttpServlet {
+@WebServlet("/follows/followIndex")
+public class FollowIndexServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TimelineServlet() {
+    public FollowIndexServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,35 +36,34 @@ public class TimelineServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
         EntityManager em = DBUtil.createEntityManager();
+
         Employee login_employee = (Employee)(request.getSession().getAttribute("login_employee"));
 
         int page;
-        try{
+        try {
             page = Integer.parseInt(request.getParameter("page"));
         } catch(Exception e) {
             page = 1;
         }
 
-        List<Report> followed_all_reports = em.createNamedQuery("getAllFollowedReports", Report.class)
-                                              .setParameter("employee1", login_employee)
-                                              .setFirstResult(15 * (page - 1))
-                                              .setMaxResults(15)
-                                              .getResultList();
+        List<Follow> follow_list = em.createNamedQuery("getAllFollow", Follow.class)
+                                     .setParameter("employee1", login_employee)
+                                     .setFirstResult(15 * (page - 1))
+                                     .setMaxResults(15)
+                                     .getResultList();
 
-        long followed_all_reports_count = (long)em.createNamedQuery("getAllFollowedReportsCount", Long.class)
-                                            .setParameter("employee1", login_employee)
-                                            .getSingleResult();
+        long follow_list_count = (long)em.createNamedQuery("getAllFollowCount", Long.class)
+                                         .setParameter("employee1", login_employee)
+                                         .getSingleResult();
 
         em.close();
 
-        request.setAttribute("f_a_r", followed_all_reports);
-        request.setAttribute("f_a_r_c", followed_all_reports_count);
+        request.setAttribute("f_l", follow_list);
+        request.setAttribute("f_l_c", follow_list_count);
         request.setAttribute("page", page);
 
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/timeline/index.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/follow/index.jsp");
         rd.forward(request, response);
-
-
     }
 
 }

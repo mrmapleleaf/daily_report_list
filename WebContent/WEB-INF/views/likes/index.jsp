@@ -7,7 +7,7 @@
     <table id = "like_list">
         <tbody>
             <tr>
-                <th class = "like_name">名前</th>
+                <th class = "like_name">氏名</th>
                 <th class = "like_date">いいねした時間</th>
             </tr>
             <c:forEach var="like" items="${likes}" varStatus="status">

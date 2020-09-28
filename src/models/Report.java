@@ -26,12 +26,20 @@ import javax.persistence.Table;
             query = "SELECT COUNT(r) FROM Report AS r"
             ),
     @NamedQuery(
-            name ="getMyAllReports",
+            name = "getMyAllReports",
             query = "SELECT r FROM Report AS r WHERE r.employee = :employee ORDER BY r.id DESC"
             ),
     @NamedQuery(
             name = "getMyReportsCount",
             query = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :employee"
+            ),
+    @NamedQuery(
+            name = "getAllFollowedReports",
+            query = "SELECT r FROM Report AS r , Follow AS f WHERE r.employee = f.employee2 AND f.employee1 = :employee1 ORDER BY r.id DESC"
+            ),
+    @NamedQuery(
+            name = "getAllFollowedReportsCount",
+            query = "SELECT Count(r) FROM Report AS r , Follow AS f WHERE r.employee = f.employee2 AND f.employee1 = :employee1 ORDER BY r.id DESC"
             )
 })
 
